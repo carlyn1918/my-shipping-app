@@ -1,0 +1,33 @@
+{
+    "regions": [
+      {
+        "name": "Metro Manila",
+        "cities": ["Marikina", "Quezon City", "San Juan", "Makati", "Taguig", "Pasig", "Mandaluyong", "Manila", "Parañaque"]
+      },
+      {
+        "name": "Central Luzon",
+        "cities": ["Angeles", "San Fernando", "Tarlac", "Olongapo", "Malolos", "Balanga", "Cabanatuan", "Gapan", "San Jose del Monte"]
+      },
+      {
+        "name": "Calabarzon",
+        "cities": ["Calamba", "Antipolo", "San Pablo", "Tagaytay", "Lucena", "Tanauan", "Batangas City", "Lipa", "Dasmariñas"]
+      },
+      {
+        "name": "Western Visayas",
+        "cities": ["Iloilo City", "Bacolod", "Roxas", "Silay", "Talisay", "San Carlos", "Cadiz", "Escalante"]
+      },
+      {
+        "name": "Central Visayas",
+        "cities": ["Cebu City", "Lapu-Lapu", "Mandaue", "Tagbilaran", "Toledo", "Danao"]
+      },
+      {
+        "name": "Davao Region",
+        "cities": ["Davao City", "Tagum", "Panabo", "Samal", "Digos"]
+      },
+      {
+        "name": "Northern Mindanao",
+        "cities": ["Cagayan de Oro", "Iligan", "Oroquieta", "Gingoog", "Malaybalay", "Valencia"]
+      }
+    ]
+  }
+  
