@@ -1,10 +1,10 @@
 // SenderInfoForm.jsx
 import React, { useState, useEffect } from "react";
-import { Select, MenuItem, InputLabel } from "@mui/material";
-import { RootContainer, Title, StyledFormControl, StyledButton } from "./styles";
-import regionsData from "./philippinesRegionsCities.json";
+import { Select, MenuItem, Typography, FormControl, InputLabel } from "@mui/material";
+import regionsData from './philippinesRegionsCities.json';
+import { RootContainer, StyledFormControl, StyledButton } from './styles'; // Import your styles
 
-const SenderInfoForm = ({ data, onChange, onNext }) => {
+const SenderInfoForm = ({ data, onChange, onNext, onBack }) => {
   const defaultRegion = "Metro Manila";
   const defaultCity = "Quezon City";
 
@@ -34,10 +34,9 @@ const SenderInfoForm = ({ data, onChange, onNext }) => {
 
   return (
     <RootContainer>
-      <Title variant="h6">Select Sender Region and City</Title>
-
+      <Typography variant="h6">Select Sender Region and City</Typography>
       <StyledFormControl fullWidth margin="normal">
-        <InputLabel shrink>Region</InputLabel>
+        <InputLabel>Region</InputLabel>
         <Select value={selectedRegion} onChange={handleRegionChange} fullWidth>
           {regionOptions.map((region) => (
             <MenuItem key={region} value={region}>
@@ -48,7 +47,7 @@ const SenderInfoForm = ({ data, onChange, onNext }) => {
       </StyledFormControl>
 
       <StyledFormControl fullWidth margin="normal">
-        <InputLabel shrink>City</InputLabel>
+        <InputLabel>City</InputLabel>
         <Select
           value={selectedCity}
           onChange={handleCityChange}
@@ -63,7 +62,11 @@ const SenderInfoForm = ({ data, onChange, onNext }) => {
         </Select>
       </StyledFormControl>
 
-      <StyledButton onClick={onNext}>Next</StyledButton>
+      {/* Button Container with Spacing */}
+      <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "16px", flexDirection: "column" }}>
+        <StyledButton onClick={onBack}>Back</StyledButton>
+        <StyledButton onClick={onNext}>Next</StyledButton>
+      </div>
     </RootContainer>
   );
 };

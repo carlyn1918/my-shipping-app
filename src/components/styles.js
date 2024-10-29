@@ -45,12 +45,20 @@ export const StyledFormControl = styled(FormControl)(({ theme }) => ({
   },
 }));
 
-// Button styling
+// Enhanced Button styling
 export const StyledButton = styled(Button)({
-  backgroundColor: "#e53935",
+  background: "linear-gradient(45deg, #ff5722, #ff9800)", // Gradient from red to orange
   color: "#fff",
+  fontWeight: 600,
   marginTop: 16,
+  padding: "8px 16px",
+  borderRadius: 8,
+  transition: "transform 0.3s, box-shadow 0.3s",
+  boxShadow: "0px 4px 10px rgba(255, 87, 34, 0.3)",
+
   "&:hover": {
-    backgroundColor: "#d32f2f",
+    transform: "scale(1.05)",
+    boxShadow: "0px 6px 12px rgba(255, 87, 34, 0.4)",
+    background: "linear-gradient(45deg, #ff7043, #ffa726)", // Lighter on hover
   },
 });
