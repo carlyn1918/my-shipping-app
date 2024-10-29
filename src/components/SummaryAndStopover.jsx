@@ -1,7 +1,7 @@
 // SummaryAndStopover.jsx
-import React, { useState } from "react";
-import { Select, MenuItem, Button, Typography } from "@mui/material";
-import regionsData from "./philippinesRegionsCities.json";
+import React, { useState, useEffect } from "react";
+import { Select, MenuItem, Button, Typography, FormControl, InputLabel } from "@mui/material";
+import regionsData from "./philippinesRegionsCities.json"; // Import the JSON file
 
 const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
   const [stopovers, setStopovers] = useState(
@@ -51,6 +51,9 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
 
 <Typography variant="h6">Enter Stop over details</Typography> 
 
+
+<FormControl fullWidth margin="normal">
+<InputLabel>Region</InputLabel>
           <Select
             value={stop.region || ''}
             onChange={(e) => handleRegionChange(index, e.target.value)}
@@ -63,6 +66,10 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
               </MenuItem>
             ))}
           </Select>
+</FormControl>
+
+<FormControl fullWidth margin="normal">
+<InputLabel>City</InputLabel>
           <Select
             value={stop.city || ''}
             onChange={(e) => updateStopover(index, 'city', e.target.value)}
@@ -76,6 +83,7 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
               </MenuItem>
             ))}
           </Select>
+          </FormControl>
         </div>
       ))}
       <Button onClick={addStopover}>Add Stopover</Button>
