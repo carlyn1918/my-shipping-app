@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Select, MenuItem, Button, Typography } from '@mui/material';
 import regionsData from './philippinesRegionsCities.json'; // Import the JSON file
 
-const ReceiverInfoForm = ({ data, onChange, onNext }) => {
+const ReceiverInfoForm = ({ data, onChange, onNext, onBack }) => {
   const [selectedRegion, setSelectedRegion] = useState(data.region || "");
 
   // Update the region and clear the city selection when the region changes
@@ -66,7 +66,9 @@ const ReceiverInfoForm = ({ data, onChange, onNext }) => {
         ))}
       </Select>
 
+      <Button onClick={onBack}>Back</Button>
       <Button onClick={onNext}>Next</Button>
+
     </div>
   );
 };
