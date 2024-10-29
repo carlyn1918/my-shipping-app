@@ -1,6 +1,6 @@
 // ParcelInfoForm.jsx
 import React from 'react';
-import { TextField, Select, MenuItem, Button } from '@mui/material';
+import { TextField, Select, MenuItem, Button, Typography } from '@mui/material';
 
 const ParcelInfoForm = ({ data, onChange, onBack, onNext }) => {
   const handleInputChange = (field) => (event) => {
@@ -9,6 +9,10 @@ const ParcelInfoForm = ({ data, onChange, onBack, onNext }) => {
 
   return (
     <div>
+
+<Typography variant="h6">Input weight of Parcel in KG</Typography> 
+
+
       <TextField
         label="Weight of Parcel"
         type="number"
@@ -17,6 +21,9 @@ const ParcelInfoForm = ({ data, onChange, onBack, onNext }) => {
         onChange={handleInputChange('weight')}
         fullWidth
       />
+
+<Typography variant="h6">Select the type of vehicle</Typography> 
+
       <Select
         label="Vehicle Type"
         value={data.vehicleType}

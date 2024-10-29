@@ -1,6 +1,6 @@
 // SummaryAndStopover.jsx
 import React, { useState } from "react";
-import { TextField, Select, MenuItem, Button, Typography } from "@mui/material";
+import { Select, MenuItem, Button, Typography } from "@mui/material";
 import regionsData from "./philippinesRegionsCities.json";
 
 const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
@@ -42,12 +42,15 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
       {stopovers.map((stop, index) => (
         <div key={index}>
           <Typography>Stopover {index + 1}</Typography>
-          <TextField
+          {/* <TextField
             label="Stopover Address"
             value={stop.address}
             onChange={(e) => updateStopover(index, 'address', e.target.value)}
             fullWidth
-          />
+          /> */}
+
+<Typography variant="h6">Enter Stop over details</Typography> 
+
           <Select
             value={stop.region || ''}
             onChange={(e) => handleRegionChange(index, e.target.value)}

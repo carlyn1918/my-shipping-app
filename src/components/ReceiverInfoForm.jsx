@@ -1,6 +1,6 @@
 // SenderInfoForm.jsx
 import React, { useState } from 'react';
-import { TextField, Select, MenuItem, Button } from '@mui/material';
+import { Select, MenuItem, Button, Typography } from '@mui/material';
 import regionsData from './philippinesRegionsCities.json'; // Import the JSON file
 
 const ReceiverInfoForm = ({ data, onChange, onNext }) => {
@@ -28,12 +28,14 @@ const ReceiverInfoForm = ({ data, onChange, onNext }) => {
 
   return (
     <div>
-      <TextField
+      {/* <TextField
         label="Receiver Address"
         value={data.address}
         onChange={handleInputChange('address')}
         fullWidth
-      />
+      /> */}
+
+<Typography variant="h6">Select Receiver Region and City</Typography> 
 
       {/* Region Dropdown */}
       <Select
