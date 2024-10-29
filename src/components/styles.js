@@ -1,45 +1,56 @@
-// styles.js
-import { makeStyles } from "@mui/styles";
+// src/components/styles.js
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "#f5f5f5", // Light background
-    padding: theme.spacing(3),
-    borderRadius: 8,
-    boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-    maxWidth: 400,
-    margin: "0 auto",
+import { styled } from "@mui/system";
+import { Typography, FormControl, Button } from "@mui/material";
+
+// Root container styling
+export const RootContainer = styled("div")(({ theme }) => ({
+  backgroundColor: "#f5f5f5",
+  padding: theme.spacing(3),
+  borderRadius: 8,
+  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+  maxWidth: 400,
+  margin: "0 auto",
+}));
+
+// Title styling
+export const Title = styled(Typography)(({ theme }) => ({
+  color: "#1a73e8",
+  fontWeight: 600,
+  marginBottom: theme.spacing(2),
+}));
+
+// FormControl styling with floating label adjustments
+export const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  "& .MuiInputLabel-root": {
+    color: "#ff6f00",
+    transform: "translate(14px, 12px) scale(1)",
+    "&.Mui-focused, &.MuiFormLabel-filled": {
+      transform: "translate(14px, -6px) scale(0.9)",
+      backgroundColor: "#f5f5f5",
+      padding: "0 4px",
+    },
   },
-  title: {
-    color: "#1a73e8", // Blue tone
-    fontWeight: 600,
-    marginBottom: theme.spacing(2),
+  "& .MuiInputBase-root": {
+    color: "#1a73e8",
   },
-  formControl: {
-    "& .MuiInputLabel-root": {
-      color: "#ff6f00", // Yellow tone
-    },
-    "& .MuiInputBase-root": {
-      color: "#1a73e8", // Text in input fields
-    },
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#ff6f00", // Outline yellowish
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#e53935", // Red when hovered
-    },
-    "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#e53935", // Red when focused
-    },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#ff6f00",
   },
-  button: {
-    backgroundColor: "#e53935", // Red tone
-    color: "#fff",
-    marginTop: theme.spacing(2),
-    "&:hover": {
-      backgroundColor: "#d32f2f",
-    },
+  "&:hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#e53935",
+  },
+  "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#e53935",
   },
 }));
 
-export default useStyles;
+// Button styling
+export const StyledButton = styled(Button)({
+  backgroundColor: "#e53935",
+  color: "#fff",
+  marginTop: 16,
+  "&:hover": {
+    backgroundColor: "#d32f2f",
+  },
+});
