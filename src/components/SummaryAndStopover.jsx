@@ -36,8 +36,8 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
   return (
     <div>
       <Typography variant="h6">Summary</Typography>
-      <div>Sender: {data.sender.address}, {data.sender.region}, {data.sender.city}</div>
-      <div>Receiver: {data.receiver.address}, {data.receiver.region}, {data.receiver.city}</div>
+      <div>Sender Location: {data.sender.region}, {data.sender.city}</div>
+      <div>Receiver Location: {data.receiver.region}, {data.receiver.city}</div>
 
       {stopovers.map((stop, index) => (
         <div key={index}>
@@ -49,7 +49,7 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
             fullWidth
           /> */}
 
-<Typography variant="h6">Enter Stop over details</Typography> 
+<Typography variant="h6">Enter Stop over location</Typography> 
 
 
 <FormControl fullWidth margin="normal">
@@ -86,7 +86,7 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
           </FormControl>
         </div>
       ))}
-      <Button onClick={addStopover}>Add Stopover</Button>
+      <Button onClick={addStopover}>Add more Stopover</Button>
       <Button onClick={onBack}>Back</Button>
       <Button onClick={onNext}>Next</Button>
     </div>
