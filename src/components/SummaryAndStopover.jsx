@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { TextField, Select, MenuItem, Button, Typography } from "@mui/material";
 import regionsData from "./philippinesRegionsCities.json";
 
-
-
 const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
-  const [stopovers, setStopovers] = useState(data.stopovers || []);
-  const [availableCities, setAvailableCities] = useState([]);
+  const [stopovers, setStopovers] = useState(
+    data.stopovers || [{ address: '', region: '', city: '', availableCities: [] }]
+  );
 
-  const addStopover = () => setStopovers([...stopovers, { address: '', region: '', city: '' }]);
+  const addStopover = () => 
+    setStopovers([...stopovers, { address: '', region: '', city: '', availableCities: [] }]);
 
   const updateStopover = (index, field, value) => {
     const updatedStopovers = stopovers.map((stop, i) =>
@@ -20,15 +20,17 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
   };
 
   const handleRegionChange = (index, selectedRegion) => {
-    updateStopover(index, 'region', selectedRegion);
-
-    // Find the corresponding cities for the selected region
     const regionData = regionsData.regions.find((region) => region.name === selectedRegion);
     const cities = regionData ? regionData.cities : [];
-    setAvailableCities(cities);
 
-    // Reset city when changing the region
-    updateStopover(index, 'city', '');
+    const updatedStopovers = stopovers.map((stop, i) =>
+      i === index
+        ? { ...stop, region: selectedRegion, city: '', availableCities: cities }
+        : stop
+    );
+
+    setStopovers(updatedStopovers);
+    onChange({ ...data, stopovers: updatedStopovers });
   };
 
   return (
@@ -61,9 +63,9 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
             value={stop.city || ''}
             onChange={(e) => updateStopover(index, 'city', e.target.value)}
             fullWidth
-            disabled={!availableCities.length}
+            disabled={!stop.availableCities.length}
           >
-            {availableCities.map((city) => (
+            {stop.availableCities.map((city) => (
               <MenuItem key={city} value={city}>
                 {city}
               </MenuItem>

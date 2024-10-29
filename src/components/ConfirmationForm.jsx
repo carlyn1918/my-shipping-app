@@ -8,14 +8,11 @@ const ConfirmationForm = ({ data, onBack, onConfirm }) => {
       <Typography variant="h6">Confirm Your Details</Typography>
 
       <Typography variant="subtitle1">Sender Information</Typography>
-      <div>Address: {data.sender.address}</div>
-      <div>City: {data.sender.city}</div>
-      <div>Province: {data.sender.province}</div>
+      <div>Sender: {data.sender.address}, {data.sender.region}, {data.sender.city}</div>
+      
 
       <Typography variant="subtitle1">Receiver Information</Typography>
-      <div>Address: {data.receiver.address}</div>
-      <div>City: {data.receiver.city}</div>
-      <div>Province: {data.receiver.province}</div>
+      <div>Receiver: {data.receiver.address}, {data.receiver.region}, {data.receiver.city}</div>
 
       {data.stopovers.length > 0 && (
         <>
@@ -23,8 +20,8 @@ const ConfirmationForm = ({ data, onBack, onConfirm }) => {
           {data.stopovers.map((stop, index) => (
             <div key={index}>
               <div>Stopover {index + 1} Address: {stop.address}</div>
-              <div>City: {stop.city}</div>
-              <div>Province: {stop.province}</div>
+              <div>City: {stop.region}</div>
+              <div>Province: {stop.city}</div>
             </div>
           ))}
         </>
