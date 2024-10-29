@@ -55,6 +55,7 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
             value={stop.region || ''}
             onChange={(e) => handleRegionChange(index, e.target.value)}
             fullWidth
+            
           >
             {regionsData.regions.map((region) => (
               <MenuItem key={region.name} value={region.name}>
@@ -67,6 +68,7 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
             onChange={(e) => updateStopover(index, 'city', e.target.value)}
             fullWidth
             disabled={!stop.availableCities.length}
+            placeholder="Select City"
           >
             {stop.availableCities.map((city) => (
               <MenuItem key={city} value={city}>

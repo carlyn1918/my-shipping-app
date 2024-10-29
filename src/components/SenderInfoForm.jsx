@@ -42,9 +42,10 @@ const SenderInfoForm = ({ data, onChange, onNext }) => {
       <Select
         label="Region"
         value={selectedRegion}
+        placeholder="Select Region"
         onChange={handleRegionChange}
         fullWidth
-      >
+        >
         {regionOptions.map((region) => (
           <MenuItem key={region} value={region}>
             {region}
