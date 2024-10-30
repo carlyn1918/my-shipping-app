@@ -10,9 +10,9 @@ const ConfirmationForm = ({ data, onBack, onConfirm }) => {
 
       {/* Sender Information */}
       <StyledFormControl fullWidth margin="normal">
-        <Typography variant="subtitle1">Sender Information</Typography>
+        <Typography variant="subtitle1">Sender Location</Typography>
         <div>
-          Sender: {data.sender.address}, {data.sender.region}, {data.sender.city}
+          {data.sender.region}, {data.sender.city}
         </div>
       </StyledFormControl>
 
@@ -24,9 +24,9 @@ const ConfirmationForm = ({ data, onBack, onConfirm }) => {
             <Card key={index} style={{ margin: "10px 0" }}>
               <CardContent>
                 <Typography variant="subtitle2">Stopover {index + 1}</Typography>
-                <div>Address: {stop.address}</div>
-                <div>City: {stop.region}</div>
-                <div>Province: {stop.city}</div>
+                
+                <div>Region: {stop.region}</div>
+                <div>City: {stop.city}</div>
               </CardContent>
             </Card>
           ))}
@@ -35,8 +35,8 @@ const ConfirmationForm = ({ data, onBack, onConfirm }) => {
 
       {/* Receiver Information */}
       <StyledFormControl fullWidth margin="normal">
-        <Typography variant="subtitle1">Receiver Information</Typography>
-        <div>Receiver: {data.receiver.address}, {data.receiver.region}, {data.receiver.city}</div>
+        <Typography variant="subtitle1">Receiver Location</Typography>
+        <div>{data.receiver.region}, {data.receiver.city}</div>
       </StyledFormControl>
 
       {/* Parcel Information */}
