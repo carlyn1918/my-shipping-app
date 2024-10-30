@@ -63,8 +63,10 @@ const ReceiverInfoForm = ({ data, onChange, onNext, onBack }) => {
         </Select>
       </StyledFormControl>
 
-      <StyledButton onClick={onBack}>Back</StyledButton>
-      <StyledButton onClick={onNext}>Next</StyledButton>
+      <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "16px", flexDirection: "column" }}>
+        <StyledButton onClick={onBack}>Back</StyledButton>
+        <StyledButton onClick={onNext}>Next</StyledButton>
+      </div>
     </RootContainer>
   );
 };

@@ -1,7 +1,8 @@
 // SummaryAndStopover.jsx
-import React, { useState, useEffect } from "react";
-import { Select, MenuItem, Button, Typography, FormControl, InputLabel } from "@mui/material";
-import regionsData from "./philippinesRegionsCities.json"; // Import the JSON file
+import React, { useState } from "react";
+import { Select, MenuItem, Typography, FormControl, InputLabel } from "@mui/material";
+import regionsData from "./philippinesRegionsCities.json";
+import { RootContainer, StyledFormControl, StyledButton } from "./styles";
 
 const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
   const [stopovers, setStopovers] = useState(
@@ -35,60 +36,57 @@ const SummaryAndStopover = ({ data, onChange, onBack, onNext }) => {
 
   return (
     <div>
-      <Typography variant="h6">Summary</Typography>
-      <div>Sender Location: {data.sender.region}, {data.sender.city}</div>
-      <div>Receiver Location: {data.receiver.region}, {data.receiver.city}</div>
+      <RootContainer>
+        <Typography variant="h6">Summary</Typography>
+        <Typography>Sender Location: {data.sender.region}, {data.sender.city}</Typography>
+        <Typography>Receiver Location: {data.receiver.region}, {data.receiver.city}</Typography>
+      </RootContainer>
 
       {stopovers.map((stop, index) => (
-        <div key={index}>
-          <Typography>Stopover {index + 1}</Typography>
-          {/* <TextField
-            label="Stopover Address"
-            value={stop.address}
-            onChange={(e) => updateStopover(index, 'address', e.target.value)}
-            fullWidth
-          /> */}
+        <RootContainer key={index}>
+          <Typography variant="h6">Stopover {index + 1}</Typography>
+          <Typography variant="subtitle1">Enter Stopover Location</Typography>
 
-<Typography variant="h6">Enter Stop over location</Typography> 
+          <StyledFormControl fullWidth margin="normal">
+            <InputLabel>Region</InputLabel>
+            <Select
+              value={stop.region || ''}
+              onChange={(e) => handleRegionChange(index, e.target.value)}
+              fullWidth
+            >
+              {regionsData.regions.map((region) => (
+                <MenuItem key={region.name} value={region.name}>
+                  {region.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </StyledFormControl>
 
-
-<FormControl fullWidth margin="normal">
-<InputLabel>Region</InputLabel>
-          <Select
-            value={stop.region || ''}
-            onChange={(e) => handleRegionChange(index, e.target.value)}
-            fullWidth
-            
-          >
-            {regionsData.regions.map((region) => (
-              <MenuItem key={region.name} value={region.name}>
-                {region.name}
-              </MenuItem>
-            ))}
-          </Select>
-</FormControl>
-
-<FormControl fullWidth margin="normal">
-<InputLabel>City</InputLabel>
-          <Select
-            value={stop.city || ''}
-            onChange={(e) => updateStopover(index, 'city', e.target.value)}
-            fullWidth
-            disabled={!stop.availableCities.length}
-            placeholder="Select City"
-          >
-            {stop.availableCities.map((city) => (
-              <MenuItem key={city} value={city}>
-                {city}
-              </MenuItem>
-            ))}
-          </Select>
-          </FormControl>
-        </div>
+          <StyledFormControl fullWidth margin="normal">
+            <InputLabel>City</InputLabel>
+            <Select
+              value={stop.city || ''}
+              onChange={(e) => updateStopover(index, 'city', e.target.value)}
+              fullWidth
+              disabled={!stop.availableCities.length}
+            >
+              {stop.availableCities.map((city) => (
+                <MenuItem key={city} value={city}>
+                  {city}
+                </MenuItem>
+              ))}
+            </Select>
+          </StyledFormControl>
+        </RootContainer>
       ))}
-      <Button onClick={addStopover}>Add more Stopover</Button>
-      <Button onClick={onBack}>Back</Button>
-      <Button onClick={onNext}>Next</Button>
+
+      <RootContainer>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "16px" }}>
+          <StyledButton onClick={addStopover}>Add Stopover</StyledButton>
+          <StyledButton onClick={onBack}>Back</StyledButton>
+          <StyledButton onClick={onNext}>Next</StyledButton>
+        </div>
+      </RootContainer>
     </div>
   );
 };

@@ -1,12 +1,13 @@
 // SenderInfoForm.jsx
 import React, { useState, useEffect } from "react";
-import { Select, MenuItem, Typography, FormControl, InputLabel } from "@mui/material";
-import regionsData from './philippinesRegionsCities.json';
-import { RootContainer, StyledFormControl, StyledButton } from './styles'; // Import your styles
+import { Select, MenuItem, InputLabel } from "@mui/material";
+import { RootContainer, Title, StyledFormControl, StyledButton } from "./styles"; // Import the styled components
+import regionsData from "./philippinesRegionsCities.json"; // Import the JSON file
+
 
 const SenderInfoForm = ({ data, onChange, onNext, onBack }) => {
   const defaultRegion = "Metro Manila";
-  const defaultCity = "Quezon City";
+  const defaultCity = "Marikina";
 
   const [selectedRegion, setSelectedRegion] = useState(data.region || defaultRegion);
   const [selectedCity, setSelectedCity] = useState(data.city || defaultCity);
@@ -34,7 +35,7 @@ const SenderInfoForm = ({ data, onChange, onNext, onBack }) => {
 
   return (
     <RootContainer>
-      <Typography variant="h6">Select Sender Region and City</Typography>
+      <Title variant="h6">Select Sender Region and City</Title>
       <StyledFormControl fullWidth margin="normal">
         <InputLabel>Region</InputLabel>
         <Select value={selectedRegion} onChange={handleRegionChange} fullWidth>
@@ -64,7 +65,7 @@ const SenderInfoForm = ({ data, onChange, onNext, onBack }) => {
 
       {/* Button Container with Spacing */}
       <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "16px", flexDirection: "column" }}>
-        <StyledButton onClick={onBack}>Back</StyledButton>
+        
         <StyledButton onClick={onNext}>Next</StyledButton>
       </div>
     </RootContainer>
