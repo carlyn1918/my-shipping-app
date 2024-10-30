@@ -72,7 +72,7 @@ const SenderInfoForm = ({ data, onChange, onNext, onBack }) => {
 
   return (
     <RootContainer>
-      <Title variant="h6">Select Sender Region, Province, Municipality, and Barangay</Title>
+      <Title variant="h6">Sender Location</Title>
 
       {/* Region Dropdown */}
       <StyledFormControl fullWidth margin="normal">
