@@ -1,16 +1,41 @@
 // PaymentDetailsForm.jsx
-import React from 'react';
-import { TextField, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { TextField, Typography, FormHelperText } from '@mui/material';
 import { RootContainer, Title, StyledFormControl, StyledButton } from './styles'; // Import shared styled components
 
 const PaymentDetailsForm = ({ data, onChange, onBack, onNext }) => {
+  const [codAmountError, setCodAmountError] = useState(false);
+
   const handlePaymentMethodChange = (method) => {
     onChange({ method, codAmount: method === 'COD' ? data.codAmount : '' });
+    if (method !== 'COD') {
+      setCodAmountError(false); // Reset error when changing method
+    }
   };
 
   const handleCODAmountChange = (event) => {
-    onChange({ codAmount: event.target.value });
+    const value = event.target.value;
+    onChange({ codAmount: value });
+    
+    // Validate COD Amount
+    validateCODAmount(value);
   };
+
+  const validateCODAmount = (amount) => {
+    const amountNum = parseFloat(amount);
+    if (amountNum < 1 || amountNum > 30000000 || isNaN(amountNum)) {
+      setCodAmountError(true);
+    } else {
+      setCodAmountError(false);
+    }
+  };
+
+  useEffect(() => {
+    // Reset COD amount error when payment method changes
+    if (data.method !== 'COD') {
+      setCodAmountError(false);
+    }
+  }, [data.method]);
 
   return (
     <RootContainer>
@@ -60,9 +85,8 @@ const PaymentDetailsForm = ({ data, onChange, onBack, onNext }) => {
 
       {/* COD Amount Field with Shrinked Label to Avoid Overlapping */}
       {data.method === 'COD' && (
-        <StyledFormControl fullWidth margin="normal">
+        <StyledFormControl fullWidth margin="normal" error={codAmountError}>
           <TextField
-            
             type="number"
             placeholder="COD Amount in PHP"
             value={data.codAmount}
@@ -72,13 +96,18 @@ const PaymentDetailsForm = ({ data, onChange, onBack, onNext }) => {
               shrink: true, // Ensures the label does not overlap with input value
             }}
           />
+          {codAmountError && (
+            <FormHelperText>
+              Amount must be a positive number between 1 and 30,000,000 PHP.
+            </FormHelperText>
+          )}
         </StyledFormControl>
       )}
 
       {/* Navigation Buttons */}
       <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "16px", flexDirection: "column" }}>
         <StyledButton onClick={onBack}>Back</StyledButton>
-        <StyledButton onClick={onNext}>Next</StyledButton>
+        <StyledButton onClick={onNext} disabled={codAmountError}>Next</StyledButton>
       </div>
     </RootContainer>
   );
