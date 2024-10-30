@@ -1,53 +1,68 @@
 // ConfirmationForm.jsx
 import React from "react";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, Card, CardContent } from "@mui/material";
+import { RootContainer, Title, StyledFormControl } from "./styles"; // Ensure you have these styled components
 
 const ConfirmationForm = ({ data, onBack, onConfirm }) => {
   return (
-    <div>
-      <Typography variant="h6">Confirm Your Details</Typography>
+    <RootContainer>
+      <Title variant="h6">Confirm Your Details</Title>
 
-      <Typography variant="subtitle1">Sender Information</Typography>
-      <div>
-        Sender: {data.sender.address}, {data.sender.region}, {data.sender.city}
-      </div>
+      {/* Sender Information */}
+      <StyledFormControl fullWidth margin="normal">
+        <Typography variant="subtitle1">Sender Information</Typography>
+        <div>
+          Sender: {data.sender.address}, {data.sender.region}, {data.sender.city}
+        </div>
+      </StyledFormControl>
 
- 
-
-
+      {/* Stopover Information */}
       {data.stopovers.length > 0 && (
-        <>
+        <StyledFormControl fullWidth margin="normal">
           <Typography variant="subtitle1">Stopover Information</Typography>
           {data.stopovers.map((stop, index) => (
-            <div key={index}>
-              <div>
-                Stopover {index + 1} Address: {stop.address}
-              </div>
-              <div>City: {stop.region}</div>
-              <div>Province: {stop.city}</div>
-            </div>
+            <Card key={index} style={{ margin: "10px 0" }}>
+              <CardContent>
+                <Typography variant="subtitle2">Stopover {index + 1}</Typography>
+                <div>Address: {stop.address}</div>
+                <div>City: {stop.region}</div>
+                <div>Province: {stop.city}</div>
+              </CardContent>
+            </Card>
           ))}
-        </>
+        </StyledFormControl>
       )}
 
-<Typography variant="subtitle1">Receiver Information</Typography>
-<div>Receiver: {data.receiver.address}, {data.receiver.region}, {data.receiver.city}</div>
+      {/* Receiver Information */}
+      <StyledFormControl fullWidth margin="normal">
+        <Typography variant="subtitle1">Receiver Information</Typography>
+        <div>Receiver: {data.receiver.address}, {data.receiver.region}, {data.receiver.city}</div>
+      </StyledFormControl>
 
-      <Typography variant="subtitle1">Parcel Information</Typography>
-      <div>Weight: {data.parcel.weight} KG</div>
-      <div>Vehicle Type: {data.parcel.vehicleType}</div>
+      {/* Parcel Information */}
+      <StyledFormControl fullWidth margin="normal">
+        <Typography variant="subtitle1">Parcel Information</Typography>
+        <div>Weight: {data.parcel.weight} KG</div>
+        <div>Vehicle Type: {data.parcel.vehicleType}</div>
+      </StyledFormControl>
 
-      <Typography variant="subtitle1">Payment Details</Typography>
-      <div>Method: {data.payment.method}</div>
-      {data.payment.method === "COD" && (
-        <div>COD Amount: PHP {data.payment.codAmount}</div>
-      )}
+      {/* Payment Details */}
+      <StyledFormControl fullWidth margin="normal">
+        <Typography variant="subtitle1">Payment Details</Typography>
+        <div>Method: {data.payment.method}</div>
+        {data.payment.method === "COD" && (
+          <div>COD Amount: PHP {data.payment.codAmount}</div>
+        )}
+      </StyledFormControl>
 
-      <Button onClick={onBack}>Back</Button>
-      <Button onClick={onConfirm} variant="contained" color="primary">
-        Confirm
-      </Button>
-    </div>
+      {/* Navigation Buttons */}
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "16px" }}>
+        <Button onClick={onBack}>Back</Button>
+        <Button onClick={onConfirm} variant="contained" color="primary">
+          Confirm
+        </Button>
+      </div>
+    </RootContainer>
   );
 };
 
